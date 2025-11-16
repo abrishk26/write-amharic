@@ -33,7 +33,7 @@ let map: NodeDict = {
         value: "ሁ",
         next: {
           "'": { value: "ሑ", next: { "'": { value: "ኁ", next: null } } },
-          "a": { value: "ኋ", next: null },
+          a: { value: "ኋ", next: null },
         },
       },
       i: {
@@ -48,6 +48,36 @@ let map: NodeDict = {
           "'": { value: "ሔ", next: { "'": { value: "ኄ", next: null } } },
         },
       },
+      h: {
+        value: "ኽ",
+        next: {
+          e: { value: "ኸ", next: null },
+          u: {
+            value: "ኹ",
+            next: {
+              e: { value: "ዀ", next: null },
+              u: { value: "ዅ", next: null },
+              i: {
+                value: "ዂ",
+                next: {
+                  e: { value: "ዄ", next: null },
+                  E: { value: "ዄ", next: null },
+                },
+              },
+              a: { value: "ዃ", next: null },
+            },
+          },
+          i: {
+            value: "ኺ",
+            next: {
+              e: { value: "ኼ", next: null },
+              E: { value: "ኼ", next: null },
+            },
+          },
+          a: { value: "ኻ", next: null },
+          o: { value: "ኾ", next: null },
+        },
+      },
       "'": { value: "ሕ", next: { "'": { value: "ኅ", next: null } } },
       o: {
         value: "ሆ",
@@ -57,7 +87,6 @@ let map: NodeDict = {
       },
     },
   },
-
   l: {
     value: "ል",
     next: {
@@ -299,6 +328,10 @@ let map: NodeDict = {
           a: { value: "ኛ", next: null },
           o: { value: "ኞ", next: null },
         },
+      },
+      "^": {
+        value: "ግ",
+        next: null,
       },
     },
   },
@@ -582,6 +615,30 @@ let map: NodeDict = {
       },
       a: { value: "ፓ", next: null },
       o: { value: "ፖ", next: null },
+    },
+  },
+  v: {
+    value: "ቭ",
+    next: {
+      e: {
+        value: "ቨ",
+        next: {
+          "'": { value: "ቬ", next: null },
+        },
+      },
+      u: {
+        value: "ቩ",
+        next: {
+          a: { value: "ቯ", next: null },
+        },
+      },
+      i: {
+        value: "ቪ",
+        next: null,
+      },
+
+      a: { value: "ቫ", next: null },
+      o: { value: "ቮ", next: null },
     },
   },
   ".": { value: "።", next: null },

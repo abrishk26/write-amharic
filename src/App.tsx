@@ -1,41 +1,22 @@
-import { useState } from "react";
-import { Textarea } from "./components/ui/textarea";
-import { find_words } from "./lib/lib";
+import { useState } from 'react';
+import { Navigation } from './components/Navigation';
+import { LandingPage } from './components/LandingPage';
+import { DocsPage } from './components/DocsPage';
+import { Playground } from './components/Playground';
+import { Toaster } from './components/ui/sonner';
 
 export default function App() {
-  const [liveText, setLiveText] = useState("");       // user input
-  const [processedText, setProcessedText] = useState(""); // processed output
-
-  // update live text
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setLiveText(e.target.value);
-  };
-
-  // process text on space
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === " ") {
-      const result = find_words(liveText).join(" ");
-      setProcessedText(result);
-    }
-  };
+  const [currentPage, setCurrentPage] = useState<'home' | 'docs' | 'playground'>('home');
 
   return (
-    <div className="space-y-4">
-      {/* User input */}
-      <Textarea
-        placeholder="Type here..."
-        value={liveText}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        className="h-40"
-      />
-
-      {/* Processed output */}
-      <Textarea
-        value={processedText}
-        readOnly
-        className="h-40 bg-gray-50 text-gray-700"
-      />
-    </div>
+    <>
+      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      
+      {currentPage === 'home' && <LandingPage onNavigate={setCurrentPage} />}
+      {currentPage === 'docs' && <DocsPage />}
+      {currentPage === 'playground' && <Playground />}
+      
+      <Toaster />
+    </>
   );
 }

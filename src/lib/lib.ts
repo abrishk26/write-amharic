@@ -37,5 +37,5 @@ function find_word(input: string, map: NodeDict) {
 }
 
 export function find_words(input: string): string[] {
-    return input.split(" ").map((word) => find_word(word, map))
+    return input.split(" ").map((word) => find_word(word.toLowerCase(), map))
 }

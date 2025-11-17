@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# write-amharic
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A desktop or web app to compose in Amharic (Ethiopic script) effortlessly.
 
-Currently, two official plugins are available:
+## ✏️ Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project helps users type/write in Amharic using a friendly UI. Users type using **ASCII letters** and can leverage their existing typing speed in English to write in Amharic. It is built with React + TypeScript + Vite, and includes a Rust + Tauri part so it can run as a web app or native desktop application.
 
-## React Compiler
+The repository structure is:
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- `src/` — frontend code
+- `src-tauri/` — Tauri (Rust) backend for the desktop build
 
-## Expanding the ESLint configuration
+Live web version: [https://write-amharic.vercel.app](https://write-amharic.vercel.app)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✅ Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Write in Amharic script using ASCII letters
+- Maintain your natural English typing speed while writing Amharic
+- Cross-platform support: web & native (via Tauri)
+- Built with modern tools: React, TypeScript, Vite, Rust (Tauri)
+- Fast and lightweight
+- Clean UI/UX
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Installation & Setup
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js (preferably latest LTS)
+- npm or yarn / bun
+- If building native app: Rust toolchain (for Tauri)
+
+### Setup steps
+
+```
+# Clone the repository
+git clone https://github.com/abrishk26/write-amharic.git
+cd write-amharic
+
+# Install dependencies
+npm install
+# or
+# yarn
+# or
+# bun install
+
+# Run development server (web)
+npm run dev
+
+# Run development server (mobile)
+cd src-tauri
+cargo install tauri-cli --version "^2.0.0" --locked
+cargo tauri dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Building
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- For web build:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm run build
+```
+
+- For native desktop build (Tauri):
+
+```
+cd src-tauri
+# follow Tauri docs for packaging for your OS
+npm run tauri build
+```
+
+### Usage
+
+```
+# In dev mode, open http://localhost:PORT in your browser
+# Type in ASCII letters and the app will convert them into Amharic script in real time
+# (If desktop) Install the generated binary and run like any standard application
+```
+
+## 🗂 Folder Structure (simplified)
+
+```
+/
+├── public/
+├── src/            # React front-end
+├── src-tauri/      # Rust + Tauri backend for desktop version
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── .eslintrc.js
+└── README.md
+```
+
+## 🛠 Tech Stack
+
+- **Frontend**: React, TypeScript, Vite, CSS
+- **Desktop wrapper**: Tauri (Rust)
+- **Linting/Formatting**: ESLint, TypeScript config
+- **Build tools**: Vite
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+
+- Open an issue for bugs or feature suggestions
+- Submit a pull request
+- Improve documentation
+- Add tests or CI/CD
+- Enhance localization, keyboard layouts, or input methods for Amharic

@@ -406,21 +406,26 @@ let map: NodeDict = {
   a: {
     value: "አ",
     next: {
-      e: {
-        value: "እ",
-        next: {
-          "'": { value: "ኤ", next: null },
-        },
-      },
-      u: { value: "ኡ", next: null },
-      i: {
-        value: "ኢ",
-        next: null,
-      },
       "'": { value: "ኣ", next: null },
-      o: { value: "ኦ", next: null },
     },
   },
+
+  u: { value: "ኡ", next: null },
+
+  i: {
+    value: "ኢ",
+    next: null,
+  },
+
+  e: {
+    value: "እ",
+    next: {
+      "'": { value: "ኤ", next: null },
+    },
+  },
+
+  o: { value: "ኦ", next: null },
+
   k: {
     value: "ክ",
     next: {
@@ -641,6 +646,7 @@ let map: NodeDict = {
       o: { value: "ቮ", next: null },
     },
   },
+
   ".": { value: "።", next: null },
   ":": {
     value: "፡",

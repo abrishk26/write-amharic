@@ -2,21 +2,25 @@ import { useState } from "react";
 import { Textarea } from "./ui/textarea";
 import { find_words } from "../lib/lib";
 import { Button } from "./ui/button";
-import { Copy, Trash2, Info } from "lucide-react";
+import { Copy, Info, Trash2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 export function Playground() {
   const [inputText, setInputText] = useState(""); // user input
   const [outputText, setOutputText] = useState(""); // processed output
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setInputText(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const text = e.target.value;
+    setInputText(text);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === " ") {
-      const result = find_words(inputText).join(" ");
-      setOutputText(result);
-    }
+    const result = find_words(text).join(" ");
+    setOutputText(result);
   };
 
   const handleCopy = () => {
@@ -44,13 +48,17 @@ export function Playground() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
-                  <p>Type Amharic text using Latin letters (e.g., "selam" → "ሰላም").</p>
+                  <p>
+                    Type Amharic text using Latin letters (e.g., "selam" →
+                    "ሰላም").
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
           <p className="text-gray-600 text-sm">
-            Type Amharic in Latin letters and see it transform to Amharic script.
+            Type Amharic in Latin letters and see it transform to Amharic
+            script.
           </p>
         </div>
 
@@ -59,7 +67,12 @@ export function Playground() {
           <div className="bg-white rounded-md shadow-sm border border-gray-200 p-4 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-gray-900 font-semibold">Input</h2>
-              <Button variant="outline" size="sm" onClick={handleClear} className="gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleClear}
+                className="gap-2"
+              >
                 <Trash2 className="w-4 h-4" />
                 Clear
               </Button>
@@ -67,7 +80,6 @@ export function Playground() {
             <Textarea
               value={inputText}
               onChange={handleChange}
-              onKeyDown={handleKeyDown}
               placeholder="Type something..."
               className="flex-1 min-h-[400px] font-mono text-sm resize-none"
             />
@@ -101,4 +113,3 @@ export function Playground() {
     </div>
   );
 }
-

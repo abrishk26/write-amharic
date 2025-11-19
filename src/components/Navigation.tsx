@@ -1,8 +1,9 @@
-import { Button } from './ui/button';
+import { Separator } from "@radix-ui/react-separator";
+import { Button } from "./ui/button";
 
 interface NavigationProps {
-  currentPage: 'home' | 'docs' | 'playground';
-  onNavigate: (page: 'home' | 'docs' | 'playground') => void;
+  currentPage: "home" | "docs" | "playground";
+  onNavigate: (page: "home" | "docs" | "playground") => void;
 }
 
 export function Navigation({ currentPage, onNavigate }: NavigationProps) {
@@ -20,22 +21,34 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
           <div className="flex gap-2">
             <Button
               size="sm"
-              variant={currentPage === 'home' ? 'default' : 'ghost'}
-              onClick={() => onNavigate('home')}
+              variant={currentPage === "home" ? "default" : "ghost"}
+              onClick={() => onNavigate("home")}
             >
               Home
             </Button>
+
+            <Separator
+              orientation="vertical"
+              className="h-6 w-px bg-gray-300"
+            />
+
             <Button
               size="sm"
-              variant={currentPage === 'docs' ? 'default' : 'ghost'}
-              onClick={() => onNavigate('docs')}
+              variant={currentPage === "docs" ? "default" : "ghost"}
+              onClick={() => onNavigate("docs")}
             >
               Docs
             </Button>
+
+            <Separator
+              orientation="vertical"
+              className="h-6 w-px bg-gray-300"
+            />
+
             <Button
               size="sm"
-              variant={currentPage === 'playground' ? 'default' : 'ghost'}
-              onClick={() => onNavigate('playground')}
+              variant={currentPage === "playground" ? "default" : "ghost"}
+              onClick={() => onNavigate("playground")}
             >
               Playground
             </Button>
@@ -45,4 +58,3 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
     </nav>
   );
 }
-

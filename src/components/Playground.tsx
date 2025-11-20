@@ -10,16 +10,17 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { Separator } from "@radix-ui/react-separator";
 
 export function Playground() {
-  const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
+  const [inputText, setInputText] = useState(""); // user input
+  const [outputText, setOutputText] = useState(""); // processed output
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
     setInputText(text);
-    setOutputText(find_words(text).join(" "));
+
+    const result = find_words(text).join(" ");
+    setOutputText(result);
   };
 
   const handleCopy = () => {
@@ -34,11 +35,10 @@ export function Playground() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-      <div className="w-full max-w-7xl bg-white rounded-xl shadow-lg border border-gray-200 flex flex-col">
-        {/* Header Section */}
-        <div className="p-6 flex flex-col gap-2">
-          <div className="flex items-center gap-3">
+    <div className="min-h-screen bg-white p-8 text-gray-900">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-1">
             <h1 className="text-2xl font-bold">Amharic Transliterator</h1>
             <TooltipProvider>
               <Tooltip>
@@ -62,13 +62,9 @@ export function Playground() {
           </p>
         </div>
 
-        {/* Horizontal Separator */}
-        <Separator className="h-px bg-gray-200 w-full" />
-
-        {/* Input & Output Section */}
-        <div className="flex flex-1 min-h-[500px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Input Panel */}
-          <div className="flex-1 p-6 flex flex-col">
+          <div className="bg-white rounded-md shadow-sm border border-gray-200 p-4 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-gray-900 font-semibold">Input</h2>
               <Button
@@ -85,15 +81,12 @@ export function Playground() {
               value={inputText}
               onChange={handleChange}
               placeholder="Type something..."
-              className="flex-1 font-mono text-sm resize-none min-h-[400px]"
+              className="flex-1 min-h-[400px] font-mono text-sm resize-none"
             />
           </div>
 
-          {/* Vertical Separator */}
-          <Separator orientation="vertical" className="w-px bg-gray-200" />
-
           {/* Output Panel */}
-          <div className="flex-1 p-6 flex flex-col">
+          <div className="bg-white rounded-md shadow-sm border border-gray-200 p-4 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-gray-900 font-semibold">Output</h2>
               <Button
@@ -111,7 +104,7 @@ export function Playground() {
               value={outputText}
               readOnly
               placeholder="Transformed output will appear here..."
-              className="flex-1 font-mono text-sm resize-none min-h-[400px] bg-gray-50"
+              className="flex-1 min-h-[400px] font-mono text-sm resize-none bg-gray-50"
             />
           </div>
         </div>
